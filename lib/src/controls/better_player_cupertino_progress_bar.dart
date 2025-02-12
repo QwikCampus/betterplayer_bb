@@ -71,7 +71,7 @@ class _VideoProgressBarState
         .betterPlayerControlsConfiguration.enableProgressBarDrag;
 
     final adIntervals =
-        betterPlayerController!.betterPlayerConfiguration.adIntervals;
+        betterPlayerController!.adIntervals;
 
     return GestureDetector(
       onHorizontalDragStart: (DragStartDetails details) {

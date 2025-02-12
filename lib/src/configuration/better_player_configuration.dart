@@ -119,7 +119,6 @@ class BetterPlayerConfiguration {
   final bool useRootNavigator;
 
   ///Ad intervals for the timestamps in progress bar
-  final Map<int, bool>? adIntervals;
 
 
   const BetterPlayerConfiguration({
@@ -160,7 +159,6 @@ class BetterPlayerConfiguration {
     this.autoDispose = true,
     this.expandToFill = true,
     this.useRootNavigator = false,
-    this.adIntervals,
   });
 
   BetterPlayerConfiguration copyWith({
@@ -234,7 +232,6 @@ class BetterPlayerConfiguration {
       autoDispose: autoDispose ?? this.autoDispose,
       expandToFill: expandToFill ?? this.expandToFill,
       useRootNavigator: useRootNavigator ?? this.useRootNavigator,
-      adIntervals: adIntervals ?? this.adIntervals,
     );
   }
 }

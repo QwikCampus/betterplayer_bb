@@ -210,6 +210,8 @@ class BetterPlayerController {
   ///Currently displayed [BetterPlayerSubtitle].
   BetterPlayerSubtitle? renderedSubtitle;
 
+  Map<int, bool>? adIntervals;
+
   BetterPlayerController(
     this.betterPlayerConfiguration, {
     this.betterPlayerPlaylistConfiguration,
@@ -416,6 +418,10 @@ class BetterPlayerController {
     } catch (exception) {
       BetterPlayerUtils.log("Load ASMS subtitle segments failed: $exception");
     }
+  }
+
+  setAdIntervals(final Map<int, bool>? adIntervals) {
+    this.adIntervals = adIntervals;
   }
 
   ///Get VideoFormat from BetterPlayerVideoFormat (adapter method which translates
