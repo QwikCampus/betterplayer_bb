@@ -717,7 +717,7 @@ class _BetterPlayerMaterialControlsState
               handleColor: _controlsConfiguration.progressBarHandleColor,
               bufferedColor: _controlsConfiguration.progressBarBufferedColor,
               backgroundColor:
-                  _controlsConfiguration.progressBarBackgroundColor),
+                  _controlsConfiguration.progressBarBackgroundColor,),
         ),
       ),
     );

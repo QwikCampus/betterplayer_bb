@@ -69,6 +69,10 @@ class _VideoProgressBarState
   Widget build(BuildContext context) {
     final bool enableProgressBarDrag = betterPlayerController!
         .betterPlayerControlsConfiguration.enableProgressBarDrag;
+
+    final adIntervals =
+        betterPlayerController!.betterPlayerConfiguration.adIntervals;
+
     return GestureDetector(
       onHorizontalDragStart: (DragStartDetails details) {
         if (!controller!.value.initialized || !enableProgressBarDrag) {
@@ -127,6 +131,7 @@ class _VideoProgressBarState
             painter: _ProgressBarPainter(
               _getValue(),
               widget.colors,
+              adIntervals
             ),
           ),
         ),
@@ -183,10 +188,12 @@ class _VideoProgressBarState
 }
 
 class _ProgressBarPainter extends CustomPainter {
-  _ProgressBarPainter(this.value, this.colors);
+  _ProgressBarPainter(this.value, this.colors, this.adIntervals);
 
   VideoPlayerValue value;
   BetterPlayerProgressColors colors;
+
+  Map<int, bool>? adIntervals;
 
   @override
   bool shouldRepaint(CustomPainter painter) {
@@ -252,5 +259,25 @@ class _ProgressBarPainter extends CustomPainter {
       handleHeight,
       colors.handlePaint,
     );
+
+    if (adIntervals != null) {
+      for (final entry in adIntervals!.entries) {
+        if (entry.key < value.position.inMilliseconds) {
+          continue;
+        }
+        final double adPart =
+            entry.key / value.duration!.inMilliseconds * size.width;
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(
+            Rect.fromPoints(
+              Offset(adPart - 1, baseOffset),
+              Offset(adPart + 1, baseOffset + barHeight),
+            ),
+            const Radius.circular(4.0),
+          ),
+          Paint()..color = Colors.red,
+        );
+      }
+    }
   }
 }
