@@ -69,6 +69,9 @@ class _VideoProgressBarState
     final bool enableProgressBarDrag = betterPlayerController!
         .betterPlayerConfiguration.controlsConfiguration.enableProgressBarDrag;
 
+    final adIntervals =
+        betterPlayerController!.adIntervals;
+
     return GestureDetector(
       onHorizontalDragStart: (DragStartDetails details) {
         if (!controller!.value.initialized || !enableProgressBarDrag) {
@@ -129,6 +132,7 @@ class _VideoProgressBarState
             painter: _ProgressBarPainter(
               _getValue(),
               widget.colors,
+              adIntervals
             ),
           ),
         ),
@@ -185,10 +189,11 @@ class _VideoProgressBarState
 }
 
 class _ProgressBarPainter extends CustomPainter {
-  _ProgressBarPainter(this.value, this.colors);
+  _ProgressBarPainter(this.value, this.colors, this.adIntervals);
 
   VideoPlayerValue value;
   BetterPlayerProgressColors colors;
+  Map<int, bool>? adIntervals;
 
   @override
   bool shouldRepaint(CustomPainter painter) {
@@ -198,6 +203,7 @@ class _ProgressBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     const height = 2.0;
+    final baseOffset = size.height / 2 - height / 2.0;
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -254,5 +260,25 @@ class _ProgressBarPainter extends CustomPainter {
       height * 3,
       colors.handlePaint,
     );
+
+    if (adIntervals != null) {
+      for (final entry in adIntervals!.entries) {
+        if (entry.key < value.position.inMilliseconds) {
+          continue;
+        }
+        final double adPart =
+            entry.key / value.duration!.inMilliseconds * size.width;
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(
+            Rect.fromPoints(
+              Offset(adPart - 1, baseOffset),
+              Offset(adPart + 1, baseOffset + height),
+            ),
+            const Radius.circular(4.0),
+          ),
+          Paint()..color = Colors.red,
+        );
+      }
+    }
   }
 }
