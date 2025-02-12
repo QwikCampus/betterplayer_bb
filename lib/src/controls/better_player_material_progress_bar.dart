@@ -203,7 +203,7 @@ class _ProgressBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     const height = 2.0;
-    final baseOffset = size.height / 2 - height / 2.0;
+    final baseOffset = size.height / 2;
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -272,7 +272,7 @@ class _ProgressBarPainter extends CustomPainter {
           RRect.fromRectAndRadius(
             Rect.fromPoints(
               Offset(adPart - 1, baseOffset),
-              Offset(adPart + 1, baseOffset + height),
+              Offset(adPart + 2, baseOffset + height),
             ),
             const Radius.circular(4.0),
           ),
