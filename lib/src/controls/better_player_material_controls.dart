@@ -204,8 +204,10 @@ class _BetterPlayerMaterialControlsState
                       : MainAxisAlignment.end,
                   children: [
                     if (contentTitle != null) ...[
-                      SizedBox(width: 8),
-                      Text(contentTitle, style: TextStyle(color: Colors.white)),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: Text(contentTitle, style: TextStyle(color: Colors.white)),
+                      ),
                     ],
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
