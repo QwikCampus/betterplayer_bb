@@ -118,7 +118,8 @@ class BetterPlayerConfiguration {
   ///Default value is false.
   final bool useRootNavigator;
 
-  ///Ad intervals for the timestamps in progress bar
+  ///Content title to be displayed in top bar
+  final String? contentTitle;
 
 
   const BetterPlayerConfiguration({
@@ -159,6 +160,7 @@ class BetterPlayerConfiguration {
     this.autoDispose = true,
     this.expandToFill = true,
     this.useRootNavigator = false,
+    this.contentTitle,
   });
 
   BetterPlayerConfiguration copyWith({
@@ -192,6 +194,7 @@ class BetterPlayerConfiguration {
     bool? expandToFill,
     bool? useRootNavigator,
     Map<int, bool>? adIntervals,
+    String? contentTitle,
   }) {
     return BetterPlayerConfiguration(
       aspectRatio: aspectRatio ?? this.aspectRatio,
@@ -232,6 +235,7 @@ class BetterPlayerConfiguration {
       autoDispose: autoDispose ?? this.autoDispose,
       expandToFill: expandToFill ?? this.expandToFill,
       useRootNavigator: useRootNavigator ?? this.useRootNavigator,
+      contentTitle: contentTitle ?? this.contentTitle,
     );
   }
 }
