@@ -212,6 +212,9 @@ class BetterPlayerController {
 
   Map<int, bool>? adIntervals;
 
+  ///Content title to be displayed in top bar
+  String? contentTitle;
+
   BetterPlayerController(
     this.betterPlayerConfiguration, {
     this.betterPlayerPlaylistConfiguration,
@@ -1282,6 +1285,10 @@ class BetterPlayerController {
     if (!_controllerEventStreamController.isClosed) {
       _controllerEventStreamController.add(event);
     }
+  }
+
+  void setContentTitle(String contentTitle) {
+    this.contentTitle = contentTitle;
   }
 
   ///Dispose BetterPlayerController. When [forceDispose] parameter is true, then

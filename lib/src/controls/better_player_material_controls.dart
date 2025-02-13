@@ -188,7 +188,7 @@ class _BetterPlayerMaterialControlsState
     }
 
     String? contentTitle =
-        _betterPlayerController?.betterPlayerConfiguration.contentTitle;
+        _betterPlayerController?.contentTitle;
     return Container(
       child: (_controlsConfiguration.enableOverflowMenu)
           ? AnimatedOpacity(
