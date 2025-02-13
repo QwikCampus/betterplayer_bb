@@ -203,8 +203,10 @@ class _BetterPlayerMaterialControlsState
                       ? MainAxisAlignment.spaceBetween
                       : MainAxisAlignment.end,
                   children: [
-                    if (contentTitle != null)
+                    if (contentTitle != null) ...[
+                      SizedBox(width: 8),
                       Text(contentTitle, style: TextStyle(color: Colors.white)),
+                    ],
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
